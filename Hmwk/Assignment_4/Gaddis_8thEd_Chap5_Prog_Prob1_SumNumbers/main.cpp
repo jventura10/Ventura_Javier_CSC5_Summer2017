@@ -21,6 +21,7 @@ int main(int argc, char** argv) {
     cin>>input;
     
     //Create Loop
+    //Sum increases by number that increases by 1
     for(int num=1;num<=input;num++){
         sum += num;
     
