@@ -46,6 +46,17 @@ int main(int argc, char** argv) {
     return 0;
 }
 
+//******************************************************************************
+//******************************************************************************
+//                          Calculate Retail Price                            **
+//Inputs:                                                                     ** 
+//    mPer ->  Markup Percentage                                              **
+//    wCost -> WholeSale Cost                                                 **
+//Output:                                                                     **   
+//    retP -> Retail Price                                                    **
+//******************************************************************************
+//******************************************************************************
+
 float calcRet(float mPer,float wCost,float retP){
     return retP=(wCost*(mPer/CNVPERC))+wCost;
 }
