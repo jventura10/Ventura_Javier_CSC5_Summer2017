@@ -18,7 +18,10 @@ void hSales(float,float,float,float);
 int main(int argc, char** argv) {
     //Declare Variables
     float salesSE,salesNE,salesSW,salesNW; //Sales for each Division
-
+    
+    //Purpose
+    cout<<"Do you Want to know the Highest Achieving Division?"<<endl;
+    
     //Call Function
     salesSE=gSales("Southeast");
     salesNE=gSales("Northeast");
@@ -47,7 +50,9 @@ float gSales(string nDiv){
         cout<<" in the order: Southeast,Northeast,Southwest,Northwest"<<endl;
         cin>>qSales;
         if(qSales<0){
-            cout<<"Sales for a quarter must be a positive number.Re-Run."<<endl;
+            cout<<endl;
+            cout<<"Sales for a quarter must be a positive number.";
+            cout<<"Terminate Program and Re-Run."<<endl;
         }
         else{
             break;
@@ -72,22 +77,30 @@ float gSales(string nDiv){
 void hSales(float qSE,float qNE,float qSW,float qNW){
     if(qSE >= qNE && qSE >= qNW && qSE >= qSW){
         cout<<fixed<<setprecision(2)<<showpoint;
+        cout<<endl;
         cout<<"The Division with the highest sales is the 'Southeast' division";
         cout<<" with sales: $"<<qSE<<endl;
+        cout<<"Good Job Southeast!"<<endl;
     }
     if(qNE >= qSE && qNE >= qNW && qNE >= qSW){
+        cout<<endl;
         cout<<fixed<<setprecision(2)<<showpoint;
         cout<<"The Division with the highest sales is the 'Northeast' division";
         cout<<" with sales: $"<<qNE<<endl;
+        cout<<"Good Job Northeast!"<<endl;
     }
     if(qSW >= qSE && qSW >= qNE && qSW >= qNW){
+        cout<<endl;
         cout<<fixed<<setprecision(2)<<showpoint;
         cout<<"The Division with the highest sales is the 'Southwest' division";
         cout<<" with sales: $"<<qSW<<endl;
+        cout<<"Good Job Southwest!"<<endl;
     }
     if(qNW >= qSE && qNW >= qNE && qNW >= qSW){
+        cout<<endl;
         cout<<fixed<<setprecision(2)<<showpoint;
         cout<<"The Division with the highest sales is the 'Northwest' division";
         cout<<" with sales: $"<<qNW<<endl;
+        cout<<"Good Job Northwest!"<<endl;
     }
 }

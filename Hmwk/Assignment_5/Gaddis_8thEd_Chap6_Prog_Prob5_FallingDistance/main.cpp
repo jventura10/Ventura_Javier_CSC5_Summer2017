@@ -18,7 +18,7 @@ int main(int argc, char** argv) {
     int timeF;   //Time for object to fall
     
     //Purpose
-    cout<<"The distance an object falls at a certain time, in seconds,";
+    cout<<"The distance an object falls, with certain time falling in seconds,";
     cout<<" will be displayed."<<endl;
     
     //Set Loop

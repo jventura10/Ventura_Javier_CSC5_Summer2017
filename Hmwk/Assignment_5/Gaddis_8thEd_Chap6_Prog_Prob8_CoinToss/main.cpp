@@ -23,7 +23,7 @@ int main(int argc, char** argv) {
  
     
     //Prompt User for Number of Coin Tosses
-    cout<<"How Many Times do You Want to Toss the Coin?"<<endl;
+    cout<<"How Many Times do You Want to flip the Coin?"<<endl;
     cin>>nTimes;
     
     //Set Loop
