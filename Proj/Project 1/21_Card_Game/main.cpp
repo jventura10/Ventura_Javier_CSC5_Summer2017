@@ -31,42 +31,69 @@ int main(int argc, char** argv) {
     char card2=rand()%52+1; //One of the two initial cards for player 
     char card3=rand()%52+1;
     char card4=rand()%51+1;
-    unsigned int value1;        //If Ace is card 1, value is either 1 or 11
-    unsigned int value2;        //If Ace is card 2, value is either 1 or 11
+    int value1;        //If Ace is card 1, value is either 1 or 11
+    int value2;        //If Ace is card 2, value is either 1 or 11
+    int value3;
+    int value4;
     unsigned int sum1;      //Player Sum
-    unsigned int sum2;      //Dealer Sum
-    unsigned int worth21; //If Card 1 is a 2 worth is 2,none drawn worth=0 
-    unsigned int worth22; //If card 2 is a 2 worth is 2,none drawn worth=0
-    unsigned int worth31; //If Card 1 is a 3 worth is 3,none drawn worth=0 
-    unsigned int worth32; //If card 2 is a 3 worth is 3,none drawn worth=0
-    unsigned int worth41; //If Card 1 is a 4 worth is 4,none drawn worth=0 
-    unsigned int worth42; //If card 2 is a 4 worth is 4,none drawn worth=0
-    unsigned int worth51; //If Card 1 is a 5 worth is 5,none drawn worth=0 
-    unsigned int worth52; //If card 2 is a 5 worth is 5,none drawn worth=0
-    unsigned int worth61; //If Card 1 is a 6 worth is 6,none drawn worth=0 
-    unsigned int worth62; //If card 2 is a 6 worth is 6,none drawn worth=0
-    unsigned int worth71; //If Card 1 is a 7 worth is 7,none drawn worth=0 
-    unsigned int worth72; //If card 2 is a 7 worth is 7,none drawn worth=0
-    unsigned int worth81; //If Card 1 is a 8 worth is 8,none drawn worth=0 
-    unsigned int worth82; //If card 2 is a 8 worth is 8,none drawn worth=0
-    unsigned int worth91; //If Card 1 is a 9 worth is 9,none drawn worth=0 
-    unsigned int worth92; //If card 2 is a 9 worth is 9,none drawn worth=0
-    unsigned int worthT1; //If Card 1 is a 10 worth is 10,none drawn worth=0 
-    unsigned int worthT2; //If card 2 is a 10 worth is 10,none drawn worth=0
-    unsigned int worthJ1; //If Card 1 is a J worth is 10,none drawn worth=0 
-    unsigned int worthJ2; //If card 2 is a J worth is 2,none drawn worth=0
-    unsigned int worthQ1; //If Card 1 is a Q worth is 10,none drawn worth=0 
-    unsigned int worthQ2; //If card 2 is a Q worth is 10,none drawn worth=0
-    unsigned int worthK1; //If Card 1 is a K worth is 10,none drawn worth=0 
-    unsigned int worthK2; //If card 2 is a K worth is 10,none drawn worth=0
+    int worth21; //If Card 1 is a 2 worth is 2,none drawn worth=0 
+    int worth22; //If card 2 is a 2 worth is 2,none drawn worth=0
+    int worth23;
+    int worth24;
+    int worth31; //If Card 1 is a 3 worth is 3,none drawn worth=0 
+    int worth32; //If card 2 is a 3 worth is 3,none drawn worth=0
+    int worth33;
+    int worth34;
+    int worth41; //If Card 1 is a 4 worth is 4,none drawn worth=0 
+    int worth42; //If card 2 is a 4 worth is 4,none drawn worth=0
+    int worth43;
+    int worth44;
+    int worth51; //If Card 1 is a 5 worth is 5,none drawn worth=0 
+    int worth52; //If card 2 is a 5 worth is 5,none drawn worth=0
+    int worth53;
+    int worth54;
+    int worth61; //If Card 1 is a 6 worth is 6,none drawn worth=0 
+    int worth62; //If card 2 is a 6 worth is 6,none drawn worth=0
+    int worth63;
+    int worth64;
+    int worth71; //If Card 1 is a 7 worth is 7,none drawn worth=0 
+    int worth72; //If card 2 is a 7 worth is 7,none drawn worth=0
+    int worth73;
+    int worth74;
+    int worth81; //If Card 1 is a 8 worth is 8,none drawn worth=0 
+    int worth82; //If card 2 is a 8 worth is 8,none drawn worth=0
+    int worth83;
+    int worth84;
+    int worth91; //If Card 1 is a 9 worth is 9,none drawn worth=0 
+    int worth92; //If card 2 is a 9 worth is 9,none drawn worth=0
+    int worth93;
+    int worth94;
+    int worthT1; //If Card 1 is a 10 worth is 10,none drawn worth=0 
+    int worthT2; //If card 2 is a 10 worth is 10,none drawn worth=0
+    int worthT3;
+    int worthT4;
+    int worthJ1; //If Card 1 is a J worth is 10,none drawn worth=0 
+    int worthJ2; //If card 2 is a J worth is 2,none drawn worth=0
+    int worthJ3;
+    int worthJ4;
+    int worthQ1; //If Card 1 is a Q worth is 10,none drawn worth=0 
+    int worthQ2; //If card 2 is a Q worth is 10,none drawn worth=0
+    int worthQ3;
+    int worthQ4;
+    int worthK1; //If Card 1 is a K worth is 10,none drawn worth=0 
+    int worthK2; //If card 2 is a K worth is 10,none drawn worth=0
+    int worthK3;
+    int worthK4;
     char hitMe;
+    bool play = true;
+    char nxtRnd;
     
+    card3!=card2;
+    card2!=card3;
+    card3!=card4;
     
-    cout<<"Random Card"<<endl;
-    cout<<"Card = "<<static_cast<int>(card1)
-                <<" -> "<<face(card1)<<suit(card1)<<endl<<endl;
-    cout<<"Card = "<<static_cast<int>(card2)
-                <<" -> "<<face(card2)<<suit(card2)<<endl<<endl;
+    do{cout<<"Black Jack "<<endl;
+    cout<<face(card1)<<suit(card1)<<" "<<face(card2)<<suit(card2)<<endl;
     
     if(card1==1 || card1==14 || card1==27 || card1==40){
         cout<<"Ace can be 1 or 11."<<endl;
@@ -259,14 +286,17 @@ int main(int argc, char** argv) {
     
     if(sum1>21){
         cout<<"You went over 21! Sorry You Lose!"<<endl;
+        break;
     }
     else if(sum1==21){
         cout<<"21!! You win! "<<endl;
+        break;
     }
     else{
         cout<<" "<<endl;
-        cout<<"Do you want another card?"<<endl;
+        cout<<"Do you want another card? Enter Y for Yes,N for No"<<endl;
         cin>>hitMe;
+        cout<<" "<<endl;
     }
     
     //Input Validation
@@ -276,21 +306,264 @@ int main(int argc, char** argv) {
     }
            
     if(hitMe=='Y'){
-        cout<<"sdnfkj"<<endl;
+        cout<<face(card1)<<suit(card1)<<" "<<face(card2)<<suit(card2);
+        cout<<" "<<face(card3)<<suit(card3)<<endl;
+        if(card3==1 || card3==14 || card3==27 || card3==40){
+        cout<<"Ace can be 1 or 11."<<endl;
+        cin>>value3;
+        }
+        else{
+            value3=0;
+        }
+        if(card3==2 || card3==15 || card3==28 || card3==41){
+            worth23=2;
+        }
+        else{
+            worth23=0;
+        }
+        if(card3==3 || card3==16 || card3==29 || card3==42){ 
+            worth33=3;
+        }
+        else{
+            worth33=0;
+        }
+
+        if(card3==4 || card3==17 || card3==30 || card3==43){
+            worth43=4;
+        }
+        else{
+            worth43=0;
+        }
+
+        if(card3==5 || card3==18 || card3==31 || card3==44){
+            worth53=2;
+        }
+        else{
+            worth53=0;
+        }
+
+        if(card3==6 || card3==19 || card3==32 || card3==45){
+            worth63=6;
+        }
+        else{
+            worth63=0;
+        }
+
+        if(card3==7 || card3==20 || card3==33 || card3==46){
+            worth73=7;
+        }
+        else{
+            worth73=0;
+        }
+
+        if(card3==8 || card3==21 || card3==34 || card3==47){
+            worth83=4;
+        }
+        else{
+            worth83=0;
+        }
+
+        if(card3==9 || card3==22 || card3==35 || card3==48){
+            worth93=4;
+        }
+        else{
+            worth93=0;
+        }
+
+        if(card3==10 || card3==23 || card3==36 || card3==49){
+            worthT3=5;
+        }
+        else{
+            worthT3=0;
+        }
+
+        if(card3==11 || card3==24 || card3==37 || card3==50){
+            worthJ3=10;
+        }
+        else{
+            worthJ3=0;
+        }
+        if(card3==12 || card3==25 || card3==38 || card3==51){
+            worthQ3=10;
+        }
+        else{
+            worthQ3=0;
+        }
+        if(card3==13 || card3==26 || card3==39 || card3==52){
+            worthK3=10;
+        }
+        else{
+            worthK3=0;
+        }
+        sum1=value1+value2+worth21+worth22+worth31+worth32+worth41+worth42+
+        worth51+worth52+worth61+worth62+worth71+worth72+worth81+worth82+
+        worth91+worth92+worthT1+worthT2+worthJ1+worthJ2+worthQ1+worthQ2+worthK1
+        +worthK2+worthK3+worthQ3+worthJ3+worthT3+worth93+worth83+worth73
+        +worth63+worth53+worth43+worth33+worth23+value3;
+        
+        cout<<"Sum: "<<sum1<<endl;
+        if(sum1>21){
+            cout<<"You went over 21! Sorry You Lose!"<<endl;
+            break;
+        }
+        else if(sum1==21){
+            cout<<"21!! You win! "<<endl;
+            break;
+        }
+        else{
+            cout<<" "<<endl;
+            cout<<"Do you want another card? Enter Y for Yes,N for No"<<endl;
+            cin>>hitMe;
+        }
+        
+        while(hitMe!='Y' && hitMe!='N'){
+        cout<<"Y for Yes and N for No"<<endl;
+        cin>>hitMe;
+        }
+        
+        if(hitMe=='Y'){
+            cout<<face(card1)<<suit(card1)<<" "<<face(card2)<<suit(card2);
+            cout<<" "<<face(card3)<<suit(card3)<<" "<<face(card4)<<suit(card4)
+                    <<endl;
+        
+            if(card4==1 || card4==14 || card4==27 || card4==40){
+            cout<<"Ace can be 1 or 11."<<endl;
+            cin>>value4;
+            }
+            else{
+                value4=0;
+            }
+            if(card4==2 || card4==15 || card4==28 || card4==41){
+                worth24=2;
+            }
+            else{
+                worth24=0;
+            }
+            if(card4==3 || card4==16 || card4==29 || card4==42){ 
+                worth34=3;
+            }
+            else{
+                worth34=0;
+            }
+
+            if(card4==4 || card4==17 || card4==30 || card4==43){
+                worth44=4;
+            }
+            else{
+                worth44=0;
+            }
+
+            if(card4==5 || card4==18 || card4==31 || card4==44){
+                worth54=2;
+            }
+            else{
+                worth54=0;
+            }
+
+            if(card4==6 || card4==19 || card4==32 || card4==45){
+                worth64=6;
+            }
+            else{
+                worth64=0;
+            }
+
+            if(card4==7 || card4==20 || card4==33 || card4==46){
+                worth74=7;
+            }
+            else{
+                worth74=0;
+            }
+
+            if(card4==8 || card4==21 || card4==34 || card4==47){
+                worth84=4;
+            }
+            else{
+                worth84=0;
+            }
+
+            if(card4==9 || card4==22 || card4==35 || card4==48){
+                worth94=4;
+            }
+            else{
+                worth94=0;
+            }
+
+            if(card4==10 || card4==23 || card4==36 || card4==49){
+                worthT4=5;
+            }
+            else{
+                worthT4=0;
+            }
+
+            if(card4==11 || card4==24 || card4==37 || card4==50){
+                worthJ4=10;
+            }
+            else{
+                worthJ4=0;
+            }
+            if(card4==12 || card4==25 || card4==38 || card4==51){
+                worthQ4=10;
+            }
+            else{
+                worthQ4=0;
+            }
+            if(card4==13 || card4==26 || card4==39 || card4==52){
+                worthK4=10;
+            }
+            else{
+                worthK4=0;
+            }
+            
+            sum1=value1+value2+worth21+worth22+worth31+worth32+worth41+worth42+
+            worth51+worth52+worth61+worth62+worth71+worth72+worth81+worth82+
+            worth91+worth92+worthT1+worthT2+worthJ1+worthJ2+worthQ1+worthQ2+
+            worthK1+worthK2+worthK3+worthQ3+worthJ3+worthT3+worth93+worth83+
+            worth73+worth63+worth53+worth43+worth33+worth23+value3+value4+
+            worth24+worth34+worth44+worth54+worth64+worth74+worth84+worth94+
+            worthT4+worthJ4+worthQ4+worthK4;
+            
+            cout<<"Sum: "<<sum1<<endl;
+            if(sum1>21){
+                cout<<"You went over 21! Sorry You Lose!"<<endl;
+                break;
+            }
+            else if(sum1==21){
+                cout<<"21!! You Win!!"<<endl;
+                break;
+            }
+            else{
+                cout<<""<<endl;
+            }
+        }
+        else{
+            cout<<"You stayed at: "<<sum1<<endl;
+            cout<<""<<endl;
+            
+        }
     }
     else{
-        cout<<"niuesfi"<<endl;
-    }
-    
-    //Input Data
-    
-    /* //Map inputs to outputs or process the data
-    cout<<"All the Cards"<<endl;
-    for(char card=1;card<=52;card++){
-        cout<<"Card = "<<static_cast<int>(card)
-                <<" -> "<<face(card)<<suit(card)<<endl;
-    }
-     */ 
+        cout<<"You stayed at: "<<sum1<<endl;
+        cout<<""<<endl;
+        }
+    cout<<"Play Again? Y for Yes N for No"<<endl;
+    cin>>nxtRnd;
+    if(nxtRnd=='Y'){
+        play=true;
+    }    
+    else if(nxtRnd=='N'){
+        play=false;
+    }    
+    else{
+        for(int j=0;j<1;){
+            cout<<"Y for Yes, N for No"<<endl;
+            cin>>nxtRnd;
+            if(nxtRnd=='Y'){
+                break;
+            }
+        }
+    }    
+        
+    }while(play = true);
     
     //Output the transformed data
     
@@ -322,3 +595,13 @@ char suit(char card){
     if(card<=39)return 'C';//C -> Clubs
     return 'H';//H -> Hearts;
 }
+
+//Input Data
+    
+    /* //Map inputs to outputs or process the data
+    cout<<"All the Cards"<<endl;
+    for(char card=1;card<=52;card++){
+        cout<<"Card = "<<static_cast<int>(card)
+                <<" -> "<<face(card)<<suit(card)<<endl;
+    }
+     */ 
