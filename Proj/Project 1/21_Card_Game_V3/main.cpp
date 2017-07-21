@@ -24,8 +24,6 @@ char face(char);
 
 //Execution begins here
 int main(int argc, char** argv) {
-    //Set the random number seed
-    //srand(static_cast<unsigned int>(time(0)));
     
     //Declare variables
     int value1;        //If Ace is card 1, value is either 1 or 11
@@ -139,18 +137,18 @@ int main(int argc, char** argv) {
         card4!=card5;
         card5!=card6;
     
-     
+
         cout<<"Enter Bet for round: $";
         cin>>bets;
         cout<<endl;
-        if(bets>pot){
+        for(int j=pot;j<bets;){
             cout<<"Sorry You don't have that much in your pot.";
-            cout<<"Enter Again"<<endl;
+            cout<<" Enter Bet Again"<<endl;
             cin>>bets;
             cout<<endl;
             while(bets>pot){
                 cout<<"Sorry You don't have that much in your pot.";
-                cout<<"Enter Again"<<endl; 
+                cout<<" Enter Bet Again"<<endl; 
                 cin>>bets;
                 cout<<endl;
             }
