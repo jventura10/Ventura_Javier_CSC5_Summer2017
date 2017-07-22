@@ -117,6 +117,9 @@ int main(int argc, char** argv) {
     float bets;
     float pot;
     char nxtRnd;
+    int wins;
+    int losses;
+    int ties;
    
     cout<<"Black Jack"<<endl;
     cout<<"Card Layout: ";
@@ -371,6 +374,7 @@ int main(int argc, char** argv) {
             cout<<"You Lost: $"<<bets<<endl;
             pot=pot-bets;
             cout<<"Your Pot: $"<<pot<<endl;
+            losses++;
             if(pot==0){
                 cout<<"Sorry, Your Pot is empty.Come Back Next Time"<<endl;
                 return 0;
@@ -383,6 +387,7 @@ int main(int argc, char** argv) {
             cout<<"Earnings (This Round): $"<<bets<<endl;
             pot=pot+bets;
             cout<<"Your Pot: $"<<endl;
+            wins++;
             
         }
         else{
@@ -512,6 +517,7 @@ int main(int argc, char** argv) {
                 pot=pot-bets;
                 cout<<"Your Pot: $"<<pot<<endl; 
                 cout<<endl;
+                losses++;
                 if(pot==0){
                     cout<<"Sorry, Your Pot is empty.Come Back Next Time"<<endl;
                     return 0;
@@ -522,6 +528,7 @@ int main(int argc, char** argv) {
                 cout<<endl;
                 cout<<"Earnings (This Round): $"<<bets<<endl;
                 pot=pot+bets;
+                wins++;
                 cout<<"Your Pot: $"<<pot<<endl;
                 cout<<endl;
             }
@@ -899,6 +906,7 @@ int main(int argc, char** argv) {
                 cout<<endl;
                 cout<<"Earnings (This Round): $"<<bets<<endl;
                 pot=pot+bets;
+                wins++;
                 cout<<"Your Pot: $"<<pot<<endl;
                 cout<<endl;
             }
@@ -910,6 +918,7 @@ int main(int argc, char** argv) {
                 pot=pot-bets;
                 cout<<"Your Pot: $"<<pot<<endl;
                 cout<<endl;
+                losses++;
                 if(pot==0){
                     cout<<"Sorry, Your Pot is empty.Come Back Next Time"<<endl;
                     return 0;
@@ -919,6 +928,7 @@ int main(int argc, char** argv) {
                 cout<<"Draw This Round"<<endl;
                 cout<<endl;
                 pot=pot;
+                ties++;
                 cout<<"Your Pot: $"<<pot<<endl;
                 cout<<endl;
             }
@@ -931,6 +941,9 @@ int main(int argc, char** argv) {
         }
         else{
             play=false;
+            cout<<"Wins: "<<wins<<endl;
+            cout<<"Losses: "<<losses<<endl;
+            cout<<"Draws: "<<ties<<endl;
             break;
         }
     }while(play=true);
