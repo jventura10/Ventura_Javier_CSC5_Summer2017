@@ -11,6 +11,9 @@
 #include <iostream>  //Input - Output Library
 #include <cstdlib>   //Random number library
 #include <ctime>     //Time library
+#include <cmath>     //Math Library
+#include <string.h>
+#include <iomanip>
 
 using namespace std; //Name-space under which system libraries exist
 
@@ -26,6 +29,8 @@ char face(char);
 int main(int argc, char** argv) {
     
     //Declare variables
+    const int SIZE=12;
+    string plyr;
     int value1;        //If Ace is card 1, value is either 1 or 11
     int value2;        //If Ace is card 2, value is either 1 or 11
     int value3;
@@ -117,6 +122,9 @@ int main(int argc, char** argv) {
     cout<<"Card Layout: ";
     cout<<"D for Diamonds, S for Spades,C for Clubs,H for Hearts"<<endl;
     cout<<endl;
+    cout<<"Enter Name: ";
+    cin>>plyr;
+    cout<<endl;
     cout<<"Enter The Amount for your BlackJack Pot: $";
     cin>>pot;
     cout<<endl;
@@ -142,8 +150,8 @@ int main(int argc, char** argv) {
         cin>>bets;
         cout<<endl;
         for(int j=pot;j<bets;){
-            cout<<"Sorry You don't have that much in your pot.";
-            cout<<" Enter Bet Again"<<endl;
+            cout<<"Sorry You don't have that much in your pot."<<setw(4)
+                    <<" Enter Bet Again"<<endl;
             cin>>bets;
             cout<<endl;
             while(bets>pot){
