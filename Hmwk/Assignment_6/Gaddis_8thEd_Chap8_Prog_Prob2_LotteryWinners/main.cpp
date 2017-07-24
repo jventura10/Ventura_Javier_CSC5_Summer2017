@@ -15,9 +15,11 @@ int main(int argc, char** argv) {
     const int NUM_TIX=10;
     
     //Declare Variables
+    //Numbers that the problem says to store 
     unsigned int tickets[10]= { 13579, 26791, 26792, 33445, 55555,
                                 62483, 77777, 79422, 85647, 93121};
-    unsigned int winning;
+    unsigned int winning;       //Winning NUmber
+    
     
     //Prompt
     cout<<"Enter this week's winning number: ";

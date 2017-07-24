@@ -5,49 +5,45 @@
  * Purpose: Rainy Days and Mondays always get me down
  */
 
-//System Libraries Here
-#include <iostream>     //Input Output Library
-#include <cstdlib>      //Random Function
-#include <cmath>        //Time Function
-#include <iomanip>      //Input Output Manipulation
+//System Libraries
+#include <iostream>  //Input - Output Library
+#include <cstdlib>   //Random function
+#include <ctime>     //Time function
+#include <iomanip>   //Formatting
+using namespace std; //Name-space under which system libraries exist
 
-using namespace std;
+//User Libraries
 
-//User Libraries Here
-
-//Global Constants Only, No Global Variables
+//Global Constants
 const int DAYS=30;
 const int MNTHS=3;
 
-//Like PI, e, Gravity, or conversions
-
-//Function Prototypes Here
+//Function Prototypes
 void fillAry(char [][DAYS],int);
 void prntAry(char [][DAYS],int);
-void prntAry(char [][MNTHS]);
+void prntAry(int  [][MNTHS]);
 char scorAry(char [][DAYS],int [][MNTHS]);
-        
-//Program Execution Begins Here
-int main(int argc, char** argv) {
-    //Set Random Number Seed
-    srand(static_cast<unsigned int>(time(0)));
 
-    //Declare all Variables Here
+//Execution begins here
+int main(int argc, char** argv) {
+    //Set the random number seed
+    srand(static_cast<unsigned int>(time(0)));
+    
+    //Declare variables
     char data[MNTHS][DAYS];
-    int stat[MNTHS][MNTHS];
+    int  stat[MNTHS][MNTHS]={};
     
-    
-    //Input Variables
+    //Initialize variables
     fillAry(data,MNTHS);
     
-    //Map Inputs
+    //Map inputs to outputs or process the data
     scorAry(data,stat);
     
-    //Output Data
+    //Output the transformed data
     prntAry(data,MNTHS);
     prntAry(stat);
     
-    //Exit
+    //Exit stage right!
     return 0;
 }
 
@@ -65,9 +61,9 @@ char scorAry(char data[][DAYS],int stat[][MNTHS]){
 }
 
 void prntAry(int stat[][MNTHS]){
-    char months[3][8]={"June   ","July   ","August  "};
-    cout<<"       R        C        S"<<endl;
-    for(int mnth=0;mnth<<MNTHS;mnth++){
+    char months[3][8]={"June   ","July   ","August "};
+    cout<<"         R   C   S"<<endl;
+    for(int mnth=0;mnth<MNTHS;mnth++){
         cout<<months[mnth];
         for(int rcs=0;rcs<MNTHS;rcs++){
             cout<<setw(3)<<stat[mnth][rcs]<<" ";
@@ -81,14 +77,14 @@ void prntAry(int stat[][MNTHS]){
 }
 
 void prntAry(char data[][DAYS],int mnths){
-    char months[3][8]={"June     ","July     ","August  "};
-    cout<<"Climate for 3 Summer months"<<endl;
-     for(int mnth=0;mnth<mnths;mnth++){
-         cout<<months[mnth];
+    char months[3][8]={"June   ","July   ","August "};
+    cout<<"Climate for 3 summer months"<<endl;
+    for(int mnth=0;mnth<mnths;mnth++){
+        cout<<months[mnth];
         for(int day=0;day<DAYS;day++){
             cout<<data[mnth][day]<<" ";
         }
-         cout<<endl;
+        cout<<endl;
     }
     cout<<endl;
 }

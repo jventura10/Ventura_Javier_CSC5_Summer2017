@@ -15,8 +15,8 @@ const int ROWS=20;
 const int COLS=2*ROWS;
 
 //Function Prototypes
-void prntAry(char [][COLS],int);
-void fillAry(char [][COLS],int);
+void ptAry(char [][COLS],int);
+void fAry(char [][COLS],int);
 void glider(char [][COLS],int,int,int);
 void rules(char [][COLS],char [][COLS],int);
 int nghbor(char [][COLS],int,int,int);
@@ -28,7 +28,7 @@ int main(int argc, char** argv) {
     int lives=50;
     
     //Initialize Variables
-    fillAry(lifeOdd,ROWS);
+    fAry(lifeOdd,ROWS);
     
     //Input Data
     glider(lifeOdd,ROWS,1,1);
@@ -36,7 +36,7 @@ int main(int argc, char** argv) {
   
     
     //Output Data
-    prntAry(lifeOdd,ROWS);
+    ptAry(lifeOdd,ROWS);
     cout<<"Generation = "<<0<<endl;
     
       //Play the Game of Life
@@ -46,14 +46,14 @@ int main(int argc, char** argv) {
 
         //Output Data
         cout<<"Generation = "<<nGen<<endl;
-        prntAry(lifeEvn,ROWS);
+        ptAry(lifeEvn,ROWS);
 
         //Generate Next in Sequence 
         rules(lifeEvn,lifeOdd,ROWS);
 
         //Output Data
         cout<<"Generation = "<<nGen<<endl;
-        prntAry(lifeOdd,ROWS);
+        ptAry(lifeOdd,ROWS);
     }
     
     return 0;
@@ -110,7 +110,7 @@ void glider(char array[][COLS],int,int zRow,int zCol){
     array[zRow+2][zCol+2]='X';
 }
 
-void prntAry(char array[][COLS],int rows){
+void ptAry(char array[][COLS],int rows){
     cout<<endl;
     for(int row=0;row<rows;row++){
         for(int col=0;col<COLS;col++){
@@ -122,7 +122,7 @@ void prntAry(char array[][COLS],int rows){
     pause(1);
 }
 
-void fillAry(char array[][COLS],int rows){
+void fAry(char array[][COLS],int rows){
     for(int row=0;row<rows;row++){
         for(int col=0;col<COLS;col++){
             array[row][col]=' ';

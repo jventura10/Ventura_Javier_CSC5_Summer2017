@@ -19,10 +19,10 @@ using namespace std;
 //Like PI, e, Gravity, or conversions
 
 //Function Prototypes Here
-void fillAry(char [],int);
-void fillAry(char [],char [],int,int);
-void prntAry(char [],int);
-char scorAry(char [],char [],char [],int);
+void ntrAry(char [],int);
+void ntrAry(char [],char [],int,int);
+void prtAry(char [],int);
+char scrAry(char [],char [],char [],int);
         
 //Program Execution Begins Here
 int main(int argc, char** argv) {
@@ -36,25 +36,25 @@ int main(int argc, char** argv) {
     char percent=60; //Bias the answers,realize starts with 25%
     
     //Input Variables
-    fillAry(key,SIZE);
-    fillAry(key,answer,SIZE,50);
+    ntrAry(key,SIZE);
+    ntrAry(key,answer,SIZE,50);
     
     //Map Inputs
-    char score=scorAry(key,answer,cW,SIZE);
+    char scre=scrAry(key,answer,cW,SIZE);
     
     //Output Data
-    prntAry(key,SIZE);
-    prntAry(answer,SIZE);
-    prntAry(cW,SIZE);
+    prtAry(key,SIZE);
+    prtAry(answer,SIZE);
+    prtAry(cW,SIZE);
     cout<<" "<<endl;
-    cout<<"You received a score of "<<static_cast<int>(score);
-    cout<<"/"<<SIZE<<((score>=pass)?" Pass":" Fail")<<endl;
+    cout<<"You received a scre of "<<static_cast<int>(scre);
+    cout<<"/"<<SIZE<<((scre>=pass)?" Pass":" Fail")<<endl;
     
     //Exit
     return 0;
 }
 
-void fillAry(char key[],char ans[],int n,int percent){
+void ntrAry(char key[],char ans[],int n,int percent){
     for(int i=0;i<n;i++){
         if((rand()%100+1)<=percent){
             ans[i]=key[i];
@@ -65,21 +65,21 @@ void fillAry(char key[],char ans[],int n,int percent){
     }
 }
 
-char scorAry(char key[],char ans[],char cW[],int n){
-    int score=0;
+char scrAry(char key[],char ans[],char cW[],int n){
+    int scre=0;
     for(int i=0;i<n;i++){
         if(key[i]==ans[i]){
-            score++;
+            scre++;
             cW[i]='C';
         }
         else{
             cW[i]=key[i]+32;
         }
     }
-    return score;
+    return scre;
 }
 
-void prntAry(char a[],int n){
+void prtAry(char a[],int n){
     cout<<endl;
     for(int i=0;i<n;i++){
         cout<<a[i]<<" ";
@@ -88,7 +88,7 @@ void prntAry(char a[],int n){
     cout<<endl;
 }
 
-void fillAry(char a[],int n){
+void ntrAry(char a[],int n){
     for(int i=0;i<n;i++){
         a[i]=rand()%4+'A';
     }
