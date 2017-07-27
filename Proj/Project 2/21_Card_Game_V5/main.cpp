@@ -14,7 +14,7 @@
 #include <string.h>  //String Library
 #include <iomanip>   //Input Output Manipulation
 #include <fstream>   //File Input-Output
-#include <vector>
+#include <vector>    //Vector Library 
 
 using namespace std; //Name-space under which system libraries exist
 
@@ -25,11 +25,13 @@ using namespace std; //Name-space under which system libraries exist
 //Function Prototypes
 char suit(char);
 char face(char);
-//int result(vector<int>& rnd);
+
 
 //Execution begins here
-
 int main(int argc, char** argv){
+    ofstream track;
+    
+    track.open ("Table.txt");
             
     //Declare variables
     const int SIZE=7;
@@ -136,6 +138,7 @@ int main(int argc, char** argv){
     int a[3]={0,0,0};
     unsigned int bonus[7]={50,100,200,250,300,500,1000};
     vector<int> rnd;
+    int b[5][2]={ {1,2},{3,4},{5,6},{7,8},{9,10}};;
    
     cout<<"Black Jack"<<endl;
     cout<<"Card Layout: ";
@@ -1239,6 +1242,8 @@ int main(int argc, char** argv){
         }
     }while(play=true);
     
+    track.close();
+    
     //Exit stage right!
     return 0;
 
@@ -1268,19 +1273,3 @@ char suit(char card){
     if(card<=39)return 'C';//C -> Clubs
     return 'H';//H -> Hearts;
 }
-
-/*int result(vector<int>& rnd){
-    int a[3];
-    for(int index=0;index<100;index++){
-        if(a[0]++){
-            cout<<"Round: "<<rnd[index+1]<<" Won"<<endl;
-        }            
-        else if(a[1]++){
-            cout<<"Round: "<<rnd[index+1]<<" Lost"<<endl;
-        }
-        else if(a[2]++){
-            cout<<"Round: "<<rnd[index+1]<<" Tied"<<endl;
-        }
-    }
-}
- */
