@@ -14,6 +14,7 @@
 #include <string.h>  //String Library
 #include <iomanip>   //Input Output Manipulation
 #include <fstream>   //File Input-Output
+#include <vector>
 
 using namespace std; //Name-space under which system libraries exist
 
@@ -24,13 +25,14 @@ using namespace std; //Name-space under which system libraries exist
 //Function Prototypes
 char suit(char);
 char face(char);
+//int result(vector<int>& rnd);
 
 //Execution begins here
+
 int main(int argc, char** argv){
             
     //Declare variables
-    ifstream out;
-    const int SIZE=5;
+    const int SIZE=7;
     string plyr;    //Name of player   
     int value1;     //If card 1 is an Ace, value is either 1 or 11
     int value2;     //If card 2 is an Ace, value is either 1 or 11
@@ -131,11 +133,14 @@ int main(int argc, char** argv){
     float bets; //Bet per round, must be less than pot
     float pot; //Total pot of money 
     char nxtRnd; //The option to play another round
-    int score[3]={0,0,0};
+    int a[3]={0,0,0};
+    unsigned int bonus[7]={50,100,200,250,300,500,1000};
+    vector<int> rnd;
    
     cout<<"Black Jack"<<endl;
     cout<<"Card Layout: ";
     cout<<"D for Diamonds, S for Spades,C for Clubs,H for Hearts"<<endl;
+    cout<<"T=10 J-Jack Q-Queen K-King A-Ace"<<endl;
     cout<<endl;
     cout<<"Enter Desired User Name: ";
     cin>>plyr;
@@ -154,6 +159,8 @@ int main(int argc, char** argv){
         char card5=rand()%52+1; //Dealer card 1
         char card6=rand()%52+1; //Dealer card 2
         char card7=rand()%52+1; //Dealer card 3
+        
+        int v=rand()%7+0; //[0,6] Pick a random number for bonus prize
                
         card1!=card2;
         card2!=card3;
@@ -161,8 +168,7 @@ int main(int argc, char** argv){
         card4!=card5;
         card5!=card6;
         card6!=card7;
-        
-        
+
         cout<<"Enter Bet for round: $";
         cin>>bets;
         cout<<endl;
@@ -178,7 +184,6 @@ int main(int argc, char** argv){
                 cout<<endl;
             }
         }
-        out.open("TableInfo");
         
         cout<<face(card1)<<suit(card1)<<" "<<face(card2)<<suit(card2)<<endl;
         
@@ -388,10 +393,20 @@ int main(int argc, char** argv){
         if(sum1==21){
             cout<<"21!! You win! "<<endl;
             cout<<endl;
-            score[0]++;
+            a[0]++;
+            //result(&rnd);
             cout<<"Earnings (This Round): $"<<bets<<endl;
             pot=pot+bets;  
             cout<<"Your Pot: $"<<showpoint<<pot<<endl;
+            if(a[0]==10){
+                for(int i=0;i<SIZE;i++){
+                    if(bonus[i]==250){
+                        cout<<"You have won a bonus prize of: $250";
+                        pot=pot+(1.0f*250);
+                        cout<<"Your Pot: $"<<pot<<endl;
+                    }
+                }
+            }    
         }
         else{
             cout<<"Do you want another card? Enter Y for Yes,N for No"<<endl;
@@ -514,32 +529,41 @@ int main(int argc, char** argv){
             cout<<endl;
             if(sum1>21){
                 cout<<"You went over 21! Sorry You Lose!"<<endl;
-                cout<<endl;
-                score[1]++;
                 cout<<"You Lost: $"<<bets<<endl;
+                cout<<endl;
                 pot=pot-bets;
                 cout<<"Your Pot: $"<<showpoint<<pot<<endl; 
                 cout<<endl;
+                a[1]++;
                 if(pot==0){
                     cout<<"Sorry, Your Pot is empty.Come Back Next Time"<<endl;
                     play=false;
                     cout<<endl;
                     cout<<plyr<<endl;
-                    cout<<"------"<<endl;
-                    cout<<"Wins: "<<score[0]<<endl;
-                    cout<<"Losses: "<<score[1]<<endl;
-                    cout<<"Draws: "<<score[2]<<endl;
+                    cout<<"---------"<<endl;
+                    cout<<"Wins: "<<a[0]<<endl;
+                    cout<<"Losses: "<<a[1]<<endl;
+                    cout<<"Draws: "<<a[2]<<endl;
                     return 0;
                 }   
             }
             else if(sum1==21){
                 cout<<"21!! You win! "<<endl;
                 cout<<endl;
-                score[0]++; 
+                a[0]++; 
                 cout<<"Earnings (This Round): $"<<bets<<endl;
                 pot=pot+bets;
                 cout<<"Your Pot: $"<<showpoint<<pot<<endl;
                 cout<<endl;
+                if(a[0]==10){
+                    for(int i=0;i<SIZE;i++){
+                        if(bonus[i]==250){
+                            cout<<"You have won a bonus prize of: $250"<<endl;
+                            pot=pot+(1.0f*250);
+                            cout<<"Your Pot: $"<<pot<<endl;
+                        }
+                    }
+                }    
             }
             
             else{
@@ -552,7 +576,7 @@ int main(int argc, char** argv){
                     cout<<endl;
                 }
             }
-
+            //Overload Function Suit and Face with multiple cards
             if(hitMe2=='Y'){
                 cout<<face(card1)<<suit(card1)<<" "<<face(card2)<<suit(card2);
                 cout<<" "<<face(card3)<<suit(card3)<<" "<<face(card4)
@@ -667,8 +691,8 @@ int main(int argc, char** argv){
                 if(sum1>21){
                     cout<<"You went over 21! Sorry You Lose!"<<endl;
                     cout<<endl;
-                    cout<<"You Lost: $"<<bets<<endl;
-                    score[1]++;
+                    cout<<"You Lost: $0"<<endl;
+                    a[1]++;
                     pot=pot-bets;
                     cout<<"Your Pot: $"<<pot<<endl;
                     if(pot==0){
@@ -677,23 +701,32 @@ int main(int argc, char** argv){
                         play=false;
                         cout<<endl;
                         cout<<plyr<<endl;
-                        cout<<"------"<<endl;
-                        cout<<"Wins: "<<score[0]<<endl;
-                        cout<<"Losses: "<<score[1]<<endl;
-                        cout<<"Draws: "<<score[2]<<endl;
+                        cout<<"---------"<<endl;
+                        cout<<"Wins: "<<a[0]<<endl;
+                        cout<<"Losses: "<<a[1]<<endl;
+                        cout<<"Draws: "<<a[2]<<endl;
                         return 0;
                     }   
                 }
                 else if(sum1==21){
                     cout<<"21!! You Win!!"<<endl;
                     cout<<endl;
-                    score[0]++;
+                    a[0]++;
                     cout<<"Earnings (This Round): $"<<bets<<endl;
                     pot=pot+bets;
                     cout<<"Your Pot: $"<<showpoint<<pot<<endl;
                     cout<<endl;
+                    if(a[0]==10){
+                        for(int i=0;i<SIZE;i++){
+                            if(bonus[i]==250){
+                                cout<<"You have won a bonus prize of: $250"<<endl;
+                                pot=pot+(1.0f*250);
+                                cout<<"Your Pot: $"<<pot<<endl;
+                            }
+                        }
+                    }    
                 }
-                else if(sum1<21){
+                else{
                     cout<<"You stayed at: "<<sum1<<endl;
                     cout<<endl;
                     cout<<"Dealers Turn"<<endl;
@@ -706,7 +739,6 @@ int main(int argc, char** argv){
                 cout<<endl;
                 cout<<"Dealers Turn"<<endl;
                 cout<<endl;
-
             }
         }
         else if(hitMe=='N'){
@@ -1031,17 +1063,17 @@ int main(int argc, char** argv){
                     pot=pot-bets;
                     cout<<"Your Pot: $"<<showpoint<<pot<<endl;
                     cout<<endl;
-                    score[1]++;
+                    a[1]++;
                     if(pot==0){
                         cout<<"Sorry, Your Pot is empty.Come Back Next Time";
                         cout<<endl;
                         play=false;
                         cout<<endl;
                         cout<<plyr<<endl;
-                        cout<<"------"<<endl;
-                        cout<<"Wins: "<<score[0]<<endl;
-                        cout<<"Losses: "<<score[1]<<endl;
-                        cout<<"Draws: "<<score[2]<<endl;
+                        cout<<"---------"<<endl;
+                        cout<<"Wins: "<<a[0]<<endl;
+                        cout<<"Losses: "<<a[1]<<endl;
+                        cout<<"Draws: "<<a[2]<<endl;
                         return 0;
                     }
                 }
@@ -1053,17 +1085,17 @@ int main(int argc, char** argv){
                     pot=pot-bets;
                     cout<<"Your Pot: $"<<showpoint<<pot<<endl;
                     cout<<endl;
-                    score[1]++;
+                    a[1]++;
                     if(pot==0){
                         cout<<"Sorry, Your Pot is empty.Come Back Next Time";
                         cout<<endl;
                         play=false;
                         cout<<endl;
                         cout<<plyr<<endl;
-                        cout<<"------"<<endl;
-                        cout<<"Wins: "<<score[0]<<endl;
-                        cout<<"Losses: "<<score[1]<<endl;
-                        cout<<"Draws: "<<score[2]<<endl;
+                        cout<<"---------"<<endl;
+                        cout<<"Wins: "<<a[0]<<endl;
+                        cout<<"Losses: "<<a[1]<<endl;
+                        cout<<"Draws: "<<a[2]<<endl;
                         return 0;
                     }
                 }
@@ -1071,28 +1103,45 @@ int main(int argc, char** argv){
                     cout<<endl;
                     cout<<"Player Wins!"<<endl;
                     cout<<endl;
-                    score[0]++;
+                    a[0]++;
                     cout<<"Earnings (This Round): $"<<bets<<endl;
                     pot=pot+bets;
                     cout<<"Your Pot: $"<<showpoint<<pot<<endl;
                     cout<<endl;
+                    if(a[0]==10){
+                        for(int i=0;i<SIZE;i++){
+                            if(bonus[i]==250){
+                                cout<<"You have won a bonus prize of: $250"<<endl;
+                                pot=pot+(1.0f*250);
+                                cout<<"Your Pot: $"<<pot<<endl;
+                            }
+                        }
+                    }    
                 }
-                else if(sum2<21 && sum2<sum1){
+                else if(sum2<21 && sum1>sum2){
                     cout<<endl;
                     cout<<"Player Wins!"<<endl;
                     cout<<endl;
-                    score[0]++;
+                    a[0]++;
                     cout<<"Earnings (This Round): $"<<bets<<endl;
                     pot=pot+bets;
                     cout<<"Your Pot: $"<<showpoint<<pot<<endl;
                     cout<<endl;
-                }
-                    
+                    if(a[0]==10){
+                        for(int i=0;i<SIZE;i++){
+                            if(bonus[i]==250){
+                                cout<<"You have won a bonus prize of: $250"<<endl;
+                                pot=pot+(1.0f*250);
+                                cout<<"Your Pot: $"<<pot<<endl;
+                            }
+                        }
+                    }    
+                }   
                 else if(sum2=sum1){
                     cout<<"Draw This Round"<<endl;
                     cout<<endl;
                     pot=pot;
-                    score[2]++;
+                    a[2]++;
                     cout<<"Your Pot: $"<<pot<<endl;
                     cout<<endl;
                 } 
@@ -1102,11 +1151,21 @@ int main(int argc, char** argv){
                     cout<<endl;
                     cout<<"Player Wins!"<<endl;
                     cout<<endl;
-                    score[0]++;
+                    a[0]++;
                     cout<<"Earnings (This Round): $"<<bets<<endl;
                     pot=pot+bets;
                     cout<<"Your Pot: $"<<showpoint<<pot<<endl;
                     cout<<endl;
+                    //Linear Search
+                    if(a[0]==10){
+                        for(int i=0;i<SIZE;i++){
+                            if(bonus[i]==250){
+                                cout<<"You have won a bonus prize of: $250"<<endl;
+                                pot=pot+(1.0f*250);
+                                cout<<"Your Pot: $"<<pot<<endl;
+                            }
+                        }
+                    }    
                 }
                 else if(sum2>sum1){
                     cout<<endl;
@@ -1116,17 +1175,17 @@ int main(int argc, char** argv){
                     pot=pot-bets;
                     cout<<"Your Pot: $"<<showpoint<<pot<<endl;
                     cout<<endl;
-                    score[1]++;
+                    a[1]++;
                     if(pot==0){
                         cout<<"Sorry, Your Pot is empty.Come Back Next Time";
                         cout<<endl;
                         play=false;
                         cout<<endl;
                         cout<<plyr<<endl;
-                        cout<<"------"<<endl;
-                        cout<<"Wins: "<<score[0]<<endl;
-                        cout<<"Losses: "<<score[1]<<endl;
-                        cout<<"Draws: "<<score[2]<<endl;
+                        cout<<"---------"<<endl;
+                        cout<<"Wins: "<<a[0]<<endl;
+                        cout<<"Losses: "<<a[1]<<endl;
+                        cout<<"Draws: "<<a[2]<<endl;
                         return 0;
                     }   
                 }
@@ -1135,7 +1194,7 @@ int main(int argc, char** argv){
                     cout<<"Draw This Round"<<endl;
                     cout<<endl;
                     pot=pot;
-                    score[2]++;
+                    a[2]++;
                     cout<<"Your Pot: $"<<pot<<endl;
                     cout<<endl;
                 }
@@ -1148,17 +1207,17 @@ int main(int argc, char** argv){
                 pot=pot-bets;
                 cout<<"Your Pot: $"<<showpoint<<pot<<endl;
                 cout<<endl;
-                score[1]++;
+                a[1]++;
                 if(pot==0){
                     cout<<"Sorry, Your Pot is empty.Come Back Next Time";
                     cout<<endl;
                     play=false;
                     cout<<endl;
                     cout<<plyr<<endl;
-                    cout<<"------"<<endl;
-                    cout<<"Wins: "<<score[0]<<endl;
-                    cout<<"Losses: "<<score[1]<<endl;
-                    cout<<"Draws: "<<score[2]<<endl;
+                    cout<<"---------"<<endl;
+                    cout<<"Wins: "<<a[0]<<endl;
+                    cout<<"Losses: "<<a[1]<<endl;
+                    cout<<"Draws: "<<a[2]<<endl;
                     return 0;
                 }   
             }
@@ -1172,16 +1231,17 @@ int main(int argc, char** argv){
             play=false;
             cout<<endl;
             cout<<plyr<<endl;
-            cout<<"------"<<endl;
-            cout<<"Wins: "<<score[0]<<endl;
-            cout<<"Losses: "<<score[1]<<endl;
-            cout<<"Draws: "<<score[2]<<endl;
+            cout<<"---------"<<endl;
+            cout<<"Wins: "<<a[0]<<endl;
+            cout<<"Losses: "<<a[1]<<endl;
+            cout<<"Draws: "<<a[2]<<endl;
             break;
         }
     }while(play=true);
-   
-    out.close();
+    
+    //Exit stage right!
     return 0;
+
 }
 
 char face(char card){
@@ -1208,3 +1268,19 @@ char suit(char card){
     if(card<=39)return 'C';//C -> Clubs
     return 'H';//H -> Hearts;
 }
+
+/*int result(vector<int>& rnd){
+    int a[3];
+    for(int index=0;index<100;index++){
+        if(a[0]++){
+            cout<<"Round: "<<rnd[index+1]<<" Won"<<endl;
+        }            
+        else if(a[1]++){
+            cout<<"Round: "<<rnd[index+1]<<" Lost"<<endl;
+        }
+        else if(a[2]++){
+            cout<<"Round: "<<rnd[index+1]<<" Tied"<<endl;
+        }
+    }
+}
+ */
