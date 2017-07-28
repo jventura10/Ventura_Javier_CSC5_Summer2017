@@ -25,7 +25,7 @@ using namespace std; //Name-space under which system libraries exist
 //Function Prototypes
 char suit(char);
 char face(char);
-
+void display(int rnd[5],int c[5]);
 
 //Execution begins here
 int main(int argc, char** argv){
@@ -35,7 +35,8 @@ int main(int argc, char** argv){
             
     //Declare variables
     const int SIZE=7;
-    string plyr;    //Name of player   
+    string plyr;   
+    string& name=plyr; //Name of player 
     int value1;     //If card 1 is an Ace, value is either 1 or 11
     int value2;     //If card 2 is an Ace, value is either 1 or 11
     int value3;     //Possible Value of card 3, 1 or 11 or 0 
@@ -138,7 +139,8 @@ int main(int argc, char** argv){
     int a[3]={0,0,0};
     unsigned int bonus[7]={50,100,200,250,300,500,1000};
     vector<int> rnd;
-    int b[5][2]={ {1,2},{3,4},{5,6},{7,8},{9,10}};;
+    int wins[5][2]={ {1,2},{3,4},{5,6},{7,8},{9,10}};;
+    
    
     cout<<"Black Jack"<<endl;
     cout<<"Card Layout: ";
@@ -1272,4 +1274,10 @@ char suit(char card){
     if(card<=26)return 'D';//D -> Diamond
     if(card<=39)return 'C';//C -> Clubs
     return 'H';//H -> Hearts;
+}
+
+void display(int rnd[5],int c[5]){
+    for(int i=0;i<4;i++){
+        cout<<"Round "<<i+1<<": "<<rnd[i]<<" "<<c[i]<<endl;
+    }
 }
