@@ -15,3 +15,5 @@ Topics covered throughout the repository include:
 - Functions
 - Arrays
 - Pointers
+
+These projects were done with the Netbeans IDE and source code is found in each project's main.cpp file. 
