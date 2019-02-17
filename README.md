@@ -12,6 +12,7 @@ Topics covered throughout the repository include:
 - Operators
 - Decision Making
 - Loops 
+- File Streaming
 - Functions
 - Arrays
 - Pointers
