@@ -3,7 +3,7 @@
 
 Repository for Summer 2017 CSC 5 Class. This repository holds homework assignments, labs, projects, and classwork done in C++. 
 
-Topics covered throughout the repository include: 
+Topics covered throughout the repository and the course include: 
 
 - Basic Syntax
 - Basic Variable and Data Types
