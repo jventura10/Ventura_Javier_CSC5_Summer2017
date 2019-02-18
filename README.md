@@ -15,6 +15,7 @@ Topics covered throughout the repository and the course include:
 - File Streaming
 - Functions
 - Arrays
+- Advanced Data Types
 - Pointers
 
 These projects were done with the Netbeans IDE and source code is found in each project's main.cpp file. 
